@@ -1,0 +1,28 @@
+* Spice netlist of read operation of 6T SRAM Cell
+
+.lib "./models/sky130.lib.spice" tt
+
+* Cross coupled Inverters
+xm1 q qb vdd vdd sky130_fd_pr__pfet_01v8 w=0.84 l=0.21 m=1
+xm2 q qb gnd gnd sky130_fd_pr__nfet_01v8 w=0.42 l=0.21 m=1
+xm3 qb q gnd gnd sky130_fd_pr__nfet_01v8 w=0.42 l=0.21 m=1
+xm4 qb q vdd vdd sky130_fd_pr__pfet_01v8 w=0.84 l=0.21 m=1
+
+* Access Transistors
+xm5 bl wl q gnd sky130_fd_pr__nfet_01v8 w=0.42 l=0.21 m=1
+xm6 blb wl qb gnd sky130_fd_pr__nfet_01v8 w=0.42 l=0.21 m=1
+
+vdd1 vdd gnd 1.8
+vwl1 wl gnd pulse(0 1.8 0 25p 25p 20n 40n)
+vq1 q gnd pulse(0 1.8 0 25p 25p 5n 10n)
+
+.tran 0.1e-09 100e-09 0e-09
+
+* Control Statements 
+.control
+run
+print allv > plot_data_v.txt
+print alli > plot_data_i.txt
+plot v(q) v(qb)+2 v(bl)+4 v(blb)+6 v(wl)+8
+.endc
+.end
