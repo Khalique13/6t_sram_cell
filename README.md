@@ -9,6 +9,7 @@ The purpose of this Project is to implement the design of 6T SRAM Cell using eSi
 - [Schematic Diagram](#schematic-diagram)
 - [Write Opearation](#write-operation)
 - [Read Operation](#read-operation)
+- [Steps to Reproduce waveforms](#steps-to-reproduce-waveforms)
 - [References](#references)
 - [Acknowledgement](#acknowledgement)
 - [Author](#author)
@@ -183,6 +184,21 @@ Spice Simulation results
 
 ![Screenshot from 2022-02-07 16-54-04](https://user-images.githubusercontent.com/80625515/152783657-00dfad85-395f-41ea-a63a-501949fcab96.png)
 
+## Steps to Reproduce waveforms
+
+Here are the basic steps to re-do the simulations and see the waveforms
+
+```
+git clone https://github.com/Khalique13/6t_sram_cell
+cd 6t_sram_cell
+
+# Write operation
+ngspice sram_cell_write.spice
+
+# Read operation
+ngspice sram_cell_read.spice
+
+```
 
 ## References
 
